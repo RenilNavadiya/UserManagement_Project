@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace UMP_DataAccess
 {
-    class UserRepository
+    class UserRepository : DataConnection
     {
+
     }
 }
