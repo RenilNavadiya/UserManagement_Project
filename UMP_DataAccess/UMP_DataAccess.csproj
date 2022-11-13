@@ -69,6 +69,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="SQL\Create Users and Insert values.sql" />
+    <Content Include="SQL\Store Procedure Insert User.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UMP_DataObject\UMP_DataObject.csproj">

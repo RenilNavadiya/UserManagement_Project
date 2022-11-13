@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,7 @@ namespace UMP_DataAccess
 
         }
 
-        public UserRepository(SqlTransaction trans): base(trans)
+        public UserRepository(SqlTransaction trans) : base(trans)
         {
 
         }
@@ -26,7 +27,7 @@ namespace UMP_DataAccess
             List<UserEntity> users = new List<UserEntity>();
 
             // database access
-            using(SqlConnection connection = (Trans == null) ? new SqlConnection(ConnectionString) : Trans.Connection)
+            using (SqlConnection connection = (Trans == null) ? new SqlConnection(ConnectionString) : Trans.Connection)
             {
                 StringBuilder sb = new StringBuilder();
                 sb.AppendLine("SELECT User_Id, FirstName, LastName, DateOfBirth, Gender, Street, City, Province, Country, PostalCode FROM Users;");
@@ -73,6 +74,51 @@ namespace UMP_DataAccess
                 }
             }
             return users;
+        }
+
+        public int InsertNewUser(UserEntity userEntity)
+        {
+            using (SqlConnection connection = (Trans == null) ? new SqlConnection(ConnectionString) : Trans.Connection)
+            {
+                try
+                {
+                    if (Trans == null)
+                    {
+                        connection.Open();
+                    }
+
+                    SqlCommand cmd = new SqlCommand("Sp_InsertNewUser", connection);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = userEntity.FirstName;
+                    cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = userEntity.LastName;
+                    cmd.Parameters.Add("@DateOfBirth", SqlDbType.Date).Value = userEntity.DateOfBirth;
+                    cmd.Parameters.Add("@Gender", SqlDbType.NChar).Value = userEntity.Gender;
+                    cmd.Parameters.Add("@Street", SqlDbType.NVarChar).Value = userEntity.Street;
+                    cmd.Parameters.Add("@City", SqlDbType.NVarChar).Value = userEntity.City;
+                    cmd.Parameters.Add("@Province", SqlDbType.NVarChar).Value = userEntity.Province;
+                    cmd.Parameters.Add("@Country", SqlDbType.NVarChar).Value = userEntity.Country;
+                    cmd.Parameters.Add("@PostalCode", SqlDbType.NVarChar).Value = userEntity.PostalCode;
+
+
+                    int result = cmd.ExecuteNonQuery();
+
+                    cmd.Dispose();
+                    return result;
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    if (Trans == null)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
         }
     }
 }
