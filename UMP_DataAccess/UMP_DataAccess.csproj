@@ -67,5 +67,14 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="SQL\Create Users and Insert values.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UMP_DataObject\UMP_DataObject.csproj">
+      <Project>{5c98593e-da7d-43eb-b755-b3090ef9a1b7}</Project>
+      <Name>UMP_DataObject</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
