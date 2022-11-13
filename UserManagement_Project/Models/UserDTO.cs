@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -22,8 +23,8 @@ namespace UserManagement_Project.Models
 
         }
 
-         public UserDTO(Guid userid,string firstname,string lastname,DateTime dateofbirth,string gender,string street,string city,string province,string country,string postalcode)
-         {
+        public UserDTO(Guid userid, string firstname, string lastname, DateTime dateofbirth, string gender, string street, string city, string province, string country, string postalcode)
+        {
             UserId = userid;
             FirstName = firstname;
             LastName = lastname;
@@ -36,38 +37,48 @@ namespace UserManagement_Project.Models
             PostalCode = postalcode;
         }
 
-    public Guid UserId { get; set; }
+        public Guid UserId { get; set; }
 
-    public string FirstName { get; set; }
+        [Display(ResourceType = typeof(Resources.Locale), Name = "FirstName")]
+        public string FirstName { get; set; }
 
-    public string LastName { get; set; }
+        [Display(ResourceType = typeof(Resources.Locale), Name = "LastName")]
+        public string LastName { get; set; }
 
-    public DateTime DateOfBirth { get; set; }
+        //[Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
+        public DateTime DateOfBirth { get; set; }
 
-    // date formate property created like "Jan 01, 2022"
-    public string DateFormat
-    {
-        get
+        [Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
+        // date formate property created like "Jan 01, 2022"
+        public string DateFormat
         {
-            return DateOfBirth.ToString("MMM dd, yyyy");
+            get
+            {
+                return DateOfBirth.ToString("MMM dd, yyyy");
+            }
+            set
+            {
+                DateFormat = value;
+            }
         }
-        set
-        {
-            DateFormat = value;
-        }
-    }
 
-    public string Gender { get; set; }
+        [Display(ResourceType = typeof(Resources.Locale), Name = "Gender")]
+        public string Gender { get; set; }
 
-    public string Street { get; set; }
+        [Display(ResourceType = typeof(Resources.Locale), Name = "Street")]
+        public string Street { get; set; }
 
-    public string City { get; set; }
+        [Display(ResourceType = typeof(Resources.Locale), Name = "City")]
+        public string City { get; set; }
 
-    public string Province { get; set; }
+        [Display(ResourceType = typeof(Resources.Locale), Name = "Province")]
+        public string Province { get; set; }
 
-    public string Country { get; set; }
+        [Display(ResourceType = typeof(Resources.Locale), Name = "Country")]
+        public string Country { get; set; }
 
-    public string PostalCode { get; set; }
+        [Display(ResourceType = typeof(Resources.Locale), Name = "PostalCode")]
+        public string PostalCode { get; set; }
     }
 
 }
