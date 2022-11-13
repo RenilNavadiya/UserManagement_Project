@@ -44,6 +44,19 @@ namespace UserManagement_Project.Models
 
     public DateTime DateOfBirth { get; set; }
 
+    // date formate property created like "Jan 01, 2022"
+    public string DateFormat
+    {
+        get
+        {
+            return DateOfBirth.ToString("MMM dd, yyyy");
+        }
+        set
+        {
+            DateFormat = value;
+        }
+    }
+
     public string Gender { get; set; }
 
     public string Street { get; set; }

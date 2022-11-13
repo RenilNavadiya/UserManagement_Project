@@ -26,6 +26,13 @@
             </div>
         </div>
     </div>
+    @if (@ViewBag.Error != "")
+    {
+        <label class="label-danger"
+               style="display: block; text-align: center; font-size: 1.5em;">
+            @ViewBag.Error
+        </label>
+    }
     <div class="container body-content">
         @RenderBody()
         <hr />
