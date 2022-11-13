@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using UMP_DataAccess;
@@ -9,7 +10,7 @@ using UserManagement_Project.Models;
 
 namespace UserManagement_Project.Controllers
 {
-    public class UsersController : Controller
+    public class UsersController : SharedController
     {
         // GET: Users
         public ActionResult Index()
@@ -30,5 +31,7 @@ namespace UserManagement_Project.Controllers
             }
             return View(userDTOs);
         }
+
+       
     }
 }
