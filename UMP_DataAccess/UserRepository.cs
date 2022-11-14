@@ -90,15 +90,61 @@ namespace UMP_DataAccess
                     SqlCommand cmd = new SqlCommand("Sp_InsertNewUser", connection);
 
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = userEntity.FirstName;
-                    cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = userEntity.LastName;
+                    cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = userEntity?.FirstName;
+                    cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = userEntity?.LastName;
+                    cmd.Parameters.Add("@DateOfBirth", SqlDbType.Date).Value = userEntity?.DateOfBirth;
+                    cmd.Parameters.Add("@Gender", SqlDbType.NChar).Value = userEntity?.Gender;
+                    cmd.Parameters.Add("@Street", SqlDbType.NVarChar).Value = userEntity?.Street;
+                    cmd.Parameters.Add("@City", SqlDbType.NVarChar).Value = userEntity?.City;
+                    cmd.Parameters.Add("@Province", SqlDbType.NVarChar).Value = userEntity?.Province;
+                    cmd.Parameters.Add("@Country", SqlDbType.NVarChar).Value = userEntity?.Country;
+                    cmd.Parameters.Add("@PostalCode", SqlDbType.NVarChar).Value = userEntity?.PostalCode;
+
+
+                    int result = cmd.ExecuteNonQuery();
+
+                    cmd.Dispose();
+                    return result;
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    if (Trans == null)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        public int UpdateUser(UserEntity userEntity)
+        {
+            using (SqlConnection connection = (Trans == null) ? new SqlConnection(ConnectionString) : Trans.Connection)
+            {
+                try
+                {
+                    if (Trans == null)
+                    {
+                        connection.Open();
+                    }
+
+                    SqlCommand cmd = new SqlCommand("Sp_UpdateUser", connection);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = userEntity?.UserId;
+                    cmd.Parameters.Add("@FirstName", SqlDbType.NVarChar).Value = userEntity?.FirstName;
+                    cmd.Parameters.Add("@LastName", SqlDbType.NVarChar).Value = userEntity?.LastName;
                     cmd.Parameters.Add("@DateOfBirth", SqlDbType.Date).Value = userEntity.DateOfBirth;
-                    cmd.Parameters.Add("@Gender", SqlDbType.NChar).Value = userEntity.Gender;
-                    cmd.Parameters.Add("@Street", SqlDbType.NVarChar).Value = userEntity.Street;
-                    cmd.Parameters.Add("@City", SqlDbType.NVarChar).Value = userEntity.City;
-                    cmd.Parameters.Add("@Province", SqlDbType.NVarChar).Value = userEntity.Province;
-                    cmd.Parameters.Add("@Country", SqlDbType.NVarChar).Value = userEntity.Country;
-                    cmd.Parameters.Add("@PostalCode", SqlDbType.NVarChar).Value = userEntity.PostalCode;
+                    cmd.Parameters.Add("@Gender", SqlDbType.NChar).Value = userEntity?.Gender;
+                    cmd.Parameters.Add("@Street", SqlDbType.NVarChar).Value = userEntity?.Street;
+                    cmd.Parameters.Add("@City", SqlDbType.NVarChar).Value = userEntity?.City;
+                    cmd.Parameters.Add("@Province", SqlDbType.NVarChar).Value = userEntity?.Province;
+                    cmd.Parameters.Add("@Country", SqlDbType.NVarChar).Value = userEntity?.Country;
+                    cmd.Parameters.Add("@PostalCode", SqlDbType.NVarChar).Value = userEntity?.PostalCode;
 
 
                     int result = cmd.ExecuteNonQuery();
