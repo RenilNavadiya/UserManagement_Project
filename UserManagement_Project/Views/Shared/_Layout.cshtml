@@ -23,51 +23,22 @@
             <div class="navbar-collapse collapse">
 
                 @if (Language.Lang == 1)
-<<<<<<< .mine
-                    <li>@Html.ActionLink("Create User", "Create", "Users")</li>
-                </ul>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-=======
                 {
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("All Users", "Index", "Users")</li>
-                        <li>@Html.ActionLink("Create User", "AddUser", "Users")</li>
+                        <li>@Html.ActionLink("Create User", "Create", "Users")</li>
                         <li>@Html.ActionLink("English", "SetLanguage", "Users", new { id = 0 },null)</li>
                     </ul>
                 }
                 else
                 {
-
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("All Users", "Index", "Users")</li>
-                        <li>@Html.ActionLink("Create User", "AddUser", "Users")</li>
+                        <li>@Html.ActionLink("Create User", "Create", "Users")</li>
                         <li>@Html.ActionLink("French", "SetLanguage", "Users", new { id = 1},null)</li>
                     </ul>
                 }
-
-
-
->>>>>>> .theirs
             </div>
-
-
-
         </div>
     </div>
     @if (@ViewBag.Error != "")

@@ -39,13 +39,17 @@ namespace UserManagement_Project.Models
 
         public Guid UserId { get; set; }
 
+        [Required]
         [Display(ResourceType = typeof(Resources.Locale), Name = "FirstName")]
         public string FirstName { get; set; }
 
+        [Required]
         [Display(ResourceType = typeof(Resources.Locale), Name = "LastName")]
         public string LastName { get; set; }
 
         //[Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
+        [Required]
+        [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
         [Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
@@ -62,21 +66,28 @@ namespace UserManagement_Project.Models
             }
         }
 
+        [Required]
         [Display(ResourceType = typeof(Resources.Locale), Name = "Gender")]
         public string Gender { get; set; }
 
+        [Required]
         [Display(ResourceType = typeof(Resources.Locale), Name = "Street")]
         public string Street { get; set; }
 
+        [Required]
         [Display(ResourceType = typeof(Resources.Locale), Name = "City")]
         public string City { get; set; }
 
+        [Required]
         [Display(ResourceType = typeof(Resources.Locale), Name = "Province")]
         public string Province { get; set; }
 
+        [Required]
         [Display(ResourceType = typeof(Resources.Locale), Name = "Country")]
         public string Country { get; set; }
 
+        [Required]
+        [RegularExpression(@"^[A-Z][0-9][A-Z]\s?[0-9][A-Z][0-9]$", ErrorMessage = "Invalid Postal Code Ex: X0X 0X0 (OR) X0X0X0")]
         [Display(ResourceType = typeof(Resources.Locale), Name = "PostalCode")]
         public string PostalCode { get; set; }
     }

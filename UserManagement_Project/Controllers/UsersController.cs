@@ -11,7 +11,6 @@ using UserManagement_Project.Models;
 
 namespace UserManagement_Project.Controllers
 {
-    public class UsersController : Controller
     public class UsersController : SharedController
     {
         // GET: Users
