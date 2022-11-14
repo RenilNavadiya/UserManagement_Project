@@ -11,6 +11,7 @@ namespace UserManagement_Project.Mapper
 {
     public static class UserMapper
     {
+        public static UserDTO Map(this UserEntity userEntity)
         {
             return new UserDTO
             {
