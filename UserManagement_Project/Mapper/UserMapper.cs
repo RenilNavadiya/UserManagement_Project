@@ -11,7 +11,7 @@ namespace UserManagement_Project.Mapper
 {
     public static class UserMapper
     {
-        public static UserDTO Map(this UserEntity userEntity )
+        public static UserDTO Map(this UserEntity userEntity)
         {
             return new UserDTO
             {
@@ -25,6 +25,23 @@ namespace UserManagement_Project.Mapper
                 Province= userEntity.Province,
                 Country = userEntity.Country,
                 PostalCode = userEntity.PostalCode
+            };
+        }
+
+        public static UserEntity EnitityMap(this UserDTO userDTO)
+        {
+            return new UserEntity()
+            {
+                UserId = userDTO.UserId,
+                FirstName = userDTO.FirstName,
+                LastName = userDTO.LastName,
+                DateOfBirth = userDTO.DateOfBirth,
+                Gender = userDTO.Gender,
+                Street = userDTO.Street,
+                City = userDTO.City,
+                Province = userDTO.Province,
+                Country = userDTO.Country,
+                PostalCode = userDTO.PostalCode
             };
         }
     }

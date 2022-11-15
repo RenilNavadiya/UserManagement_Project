@@ -11,26 +11,16 @@ using UserManagement_Project.Models;
 
 namespace UserManagement_Project.Controllers
 {
-    public class UsersController : Controller
     public class UsersController : SharedController
     {
+        private UserRepository userRepository = new UserRepository();
+        private UserEntity userEntity = new UserEntity();
+
         // GET: Users
         public ActionResult Index()
         {
-            UserRepository userData = new UserRepository();
             List<UserDTO> userDTOs = new List<UserDTO>();
-            try
-            {
-                var entityData = userData.GetUsers();
-                foreach(var item in entityData)
-                {
-                    userDTOs.Add(item?.Map());
-                }
-            }
-            catch (Exception ex)
-            {
-                ViewBag.Error = ex.Message;
-            }
+            GetAllUsers(userDTOs);
             return View(userDTOs);
         }
 
@@ -41,25 +31,12 @@ namespace UserManagement_Project.Controllers
         }
 
         [HttpPost]
-        public ActionResult Insert(UserDTO userDto)
+        public ActionResult Insert(UserDTO userDTO)
         {
-            UserRepository userdata = new UserRepository();
             try
             {
-                UserEntity userEntity = new UserEntity()
-                {
-                    FirstName = userDto.FirstName,
-                    LastName = userDto.LastName,
-                    DateOfBirth = userDto.DateOfBirth,
-                    Gender = userDto.Gender,
-                    Street = userDto.Street,
-                    City = userDto.City,
-                    Province = userDto.Province,
-                    Country = userDto.Country,
-                    PostalCode = userDto.PostalCode
-                };
-
-                userdata.InsertNewUser(userEntity);
+                userEntity = UserMapper.EnitityMap(userDTO);
+                userRepository.InsertNewUser(userEntity);
             }
             catch (Exception ex)
             {
@@ -67,6 +44,51 @@ namespace UserManagement_Project.Controllers
             }
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult UpdateUser(Guid userId)
+        {
+            List<UserDTO> userDTOs = new List<UserDTO>();
+            GetAllUsers(userDTOs);
+            var user = userDTOs.FirstOrDefault(x => x.UserId == userId);
+
+            return View("UpdateUser", user);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateUser(UserDTO userDTO)
+        {
+            UserRepository userRepository = new UserRepository();
+            try
+            {
+                userEntity = UserMapper.EnitityMap(userDTO);
+                userRepository.UpdateUser(userEntity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return RedirectToAction("Index");
+        }
+
+        //GetAllUsers private method to use it in a various places
+        private List<UserDTO> GetAllUsers(List<UserDTO> userDTOs)
+        {
+            try
+            {
+                var entityData = userRepository.GetUsers();
+                foreach (var item in entityData)
+                {
+                    userDTOs.Add(item?.Map());
+                }
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+            }
+            return userDTOs;
         }
     }
 }

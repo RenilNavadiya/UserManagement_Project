@@ -45,22 +45,22 @@ namespace UserManagement_Project.Models
         [Display(ResourceType = typeof(Resources.Locale), Name = "LastName")]
         public string LastName { get; set; }
 
-        //[Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
+        [Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
         public DateTime DateOfBirth { get; set; }
 
-        [Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
         // date formate property created like "Jan 01, 2022"
-        public string DateFormat
-        {
-            get
-            {
-                return DateOfBirth.ToString("MMM dd, yyyy");
-            }
-            set
-            {
-                DateFormat = value;
-            }
-        }
+        //[Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
+        //public string DateFormat
+        //{
+        //    get
+        //    {
+        //        return DateOfBirth.ToString("MMM dd, yyyy");
+        //    }
+        //    set
+        //    {
+        //        DateFormat = value;
+        //    }
+        //}
 
         [Display(ResourceType = typeof(Resources.Locale), Name = "Gender")]
         public string Gender { get; set; }
