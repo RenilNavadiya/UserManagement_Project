@@ -166,5 +166,42 @@ namespace UMP_DataAccess
                 }
             }
         }
+
+        public int DeleteUser(Guid userId)
+        {
+            using (SqlConnection connection = (Trans == null) ? new SqlConnection(ConnectionString) : Trans.Connection)
+            {
+                try
+                {
+                    if (Trans == null)
+                    {
+                        connection.Open();
+                    }
+
+                    SqlCommand cmd = new SqlCommand("Sp_DeleteUser", connection);
+
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = userId;
+                    
+
+                    int result = cmd.ExecuteNonQuery();
+
+                    //cmd.Dispose();
+                    return result;
+
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+                }
+                finally
+                {
+                    if (Trans == null)
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
     }
 }
