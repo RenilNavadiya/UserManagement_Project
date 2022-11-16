@@ -47,12 +47,12 @@ namespace UserManagement_Project.Models
         [Display(ResourceType = typeof(Resources.Locale), Name = "LastName")]
         public string LastName { get; set; }
 
-        //[Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
+        [Display(ResourceType = typeof(Resources.Locale), Name = "DateOfBirth")]
         [Required]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
 
-        [Display(ResourceType = typeof(Resources.Locale), Name = "DateFormat")]
+        
         // date formate property created like "Jan 01, 2022"
         public string DateFormat
         {

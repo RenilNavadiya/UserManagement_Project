@@ -59,6 +59,7 @@ namespace UserManagement_Project.Controllers
         [HttpPost]
         public ActionResult UpdateUser(UserDTO userDTO)
         {
+
             UserRepository userRepository = new UserRepository();
             try
             {
@@ -72,6 +73,26 @@ namespace UserManagement_Project.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult DeleteUser(Guid userId)
+        {
+            UserRepository userRepository = new UserRepository();
+            
+            try
+            {
+                var result = userRepository.DeleteUser(userId);
+                               
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            
+            return RedirectToAction("Index");
+        }
+
+
 
         //GetAllUsers private method to use it in a various places
         private List<UserDTO> GetAllUsers(List<UserDTO> userDTOs)

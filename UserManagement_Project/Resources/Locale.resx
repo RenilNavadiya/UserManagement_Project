@@ -117,14 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AllUsers" xml:space="preserve">
+    <value>All Users</value>
+  </data>
+  <data name="Back to List" xml:space="preserve">
+    <value>Back to List</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="Create User" xml:space="preserve">
+    <value>Create User</value>
+  </data>
   <data name="DateFormat" xml:space="preserve">
     <value>Date Of Birth</value>
+  </data>
+  <data name="DateOfBirth" xml:space="preserve">
+    <value>Date Of Birth</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="Female" xml:space="preserve">
+    <value>Female</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
@@ -132,11 +159,17 @@
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
   </data>
+  <data name="Index" xml:space="preserve">
+    <value>Index</value>
+  </data>
   <data name="LastName" xml:space="preserve">
     <value>Last Name</value>
   </data>
-  <data name="Maitri" xml:space="preserve">
-    <value>Maitri</value>
+  <data name="Male" xml:space="preserve">
+    <value>Male</value>
+  </data>
+  <data name="My ASP.NET Application" xml:space="preserve">
+    <value>My ASP.NET Application</value>
   </data>
   <data name="PostalCode" xml:space="preserve">
     <value>Postal Code</value>
@@ -144,7 +177,22 @@
   <data name="Province" xml:space="preserve">
     <value>Province</value>
   </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
   <data name="Street" xml:space="preserve">
     <value>Address</value>
+  </data>
+  <data name="UpdateUser" xml:space="preserve">
+    <value>UpdateUser</value>
+  </data>
+  <data name="User Management System" xml:space="preserve">
+    <value>User Management System</value>
+  </data>
+  <data name="UserDTO" xml:space="preserve">
+    <value>UserDTO</value>
+  </data>
+  <data name="UserEntity" xml:space="preserve">
+    <value>UserEntity</value>
   </data>
 </root>
