@@ -45,7 +45,7 @@ namespace UserManagement_Project.Controllers
                 throw new Exception(ex.Message);
             }
 
-            TempData["Message"] = "User " + userDTO.FirstName + " has been Saved Successfully ";
+            TempData["Message"] = "User with name: " + userDTO.FirstName + " has been Saved Successfully ";
             return RedirectToAction("Index");
         }
 
@@ -74,7 +74,7 @@ namespace UserManagement_Project.Controllers
                 throw new Exception(ex.Message);
             }
 
-            TempData["Message"] = "User " + userDTO.FirstName + " has been edited Successfully ";
+            TempData["Message"] = "User with name: " + userDTO.FirstName + " has been edited Successfully ";
             return RedirectToAction("Index");
         }
 

@@ -8,8 +8,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <script src="https://lipis.github.io/bootstrap-sweetalert/lib/sweet-alert.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -52,9 +52,6 @@
         </label>
     }
 
-    @if (TempData.Keys.Contains("Message"))
-    {<h3 class="bg-success text-center" style="padding: 10px">@TempData["Message"]</h3>}
-
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -63,9 +60,27 @@
         </footer>
     </div>
 
+
+    <script>
+    @if (TempData.Keys.Contains("Message")){<text>
+            $(window).load(function()
+              {
+                $(document).ready(function()
+                {
+                    swal({
+                    title:"Saved!",
+                    text: "@TempData["Message"]",
+                    type: "error"
+                         });
+                    });
+              });</text>
+     }
+    </script>
+
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>
 
