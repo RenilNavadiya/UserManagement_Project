@@ -9,10 +9,11 @@
 <h2>@Locale.Create</h2>
 
 
-@using (Html.BeginForm("Insert", "Users")) 
+
+@using (Html.BeginForm("Insert", "Users"))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>@Locale.UserDTO</h4>
         <hr />
@@ -43,12 +44,12 @@
         </div>
 
         @*<div class="form-group">
-            @Html.LabelFor(model => model.DateFormat, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateFormat, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateFormat, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                @Html.LabelFor(model => model.DateFormat, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DateFormat, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DateFormat, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -113,4 +114,30 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+     @if(TempData["Message"] != null) { <text>
+            $(window).load(function()
+                {
+                $(document).ready(function()
+                    {
+                    swal({
+                        title: "Message",
+                        text: "@TempData["Message"]",
+                        type: "success"
+                    });
+                });
+            }); </text>
+    }
+    </script>
 }
+
+
+
+
+
+
+
+
+
+
+

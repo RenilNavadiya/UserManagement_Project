@@ -173,16 +173,15 @@ namespace UMP_DataAccess
             {
                 try
                 {
-                    if (Trans == null)
-                    {
-                        connection.Open();
-                    }
-
                     SqlCommand cmd = new SqlCommand("Sp_DeleteUser", connection);
 
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@UserId", SqlDbType.UniqueIdentifier).Value = userId;
-                    
+
+                    if (Trans == null)
+                    {
+                        connection.Open();
+                    }
 
                     int result = cmd.ExecuteNonQuery();
 

@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<UserManagement_Project.Models.UserDTO>
+@using UserManagement_Project.Resources
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>@Locale.Index</h2>
 <br />
 <div>
-    @Html.ActionLink("Add User", "Create", "", new { @class = "btn btn-primary" })
+    @Html.ActionLink(@Locale.AddUser, "Create", "", new { @class = "btn btn-primary" })
 </div>
 <br />
 <table class="table">
@@ -74,8 +75,11 @@
                 @Html.DisplayFor(modelItem => item.PostalCode)
             </td>
             <td>
-                @Html.ActionLink("Edit", "UpdateUser", new { userId = item.UserId }, new { @class = "btn btn-success" }) |
-                <button id="delete" class="btn btn-danger pad" onclick="ModalAction('Delete Conformation!', 'Are you sure you want to delete this User?', 'Delete', this, Delete)" data-id="@item.UserId">Delete</button>
+                @Html.ActionLink(@Locale.Edit, "UpdateUser", new { userId = item.UserId }, new { @class = "btn btn-success" }) |
+                <button id="delete" class="btn btn-danger pad" onclick="ModalAction('Delete Conformation!',
+                        'Are you sure you want to delete this User?', 'Delete', this, Delete)" data-id="@item.UserId">
+                    Delete
+                </button>
             </td>
         </tr>
     }
@@ -130,10 +134,10 @@
 
         var Delete = function (id, modal) {
             $.ajax({
-                url: "../Users/Delete",
+                url: "../Users/DeleteUser",
                 cache: false,
                 type: 'POST',
-                data: { id: id },
+                data: { userId: id },
                 success: async function (data) {
                     $(modal).hide();
                     await swal('Deleted', data, 'error');

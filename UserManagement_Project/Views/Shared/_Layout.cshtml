@@ -8,6 +8,8 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <script src="https://lipis.github.io/bootstrap-sweetalert/lib/sweet-alert.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" defer></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -27,16 +29,16 @@
                 {
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink(@Locale.AllUsers, "Index", "Users")</li>
-                        <li>@Html.ActionLink(@Locale.Create_User, "Create", "Users")</li>
-                        <li>@Html.ActionLink("English", "SetLanguage", "Users", new { id = 0 },null)</li>
+                        <li>@Html.ActionLink(@Locale.AddUser, "Create", "Users")</li>
+                        <li>@Html.ActionLink("English", "SetLanguage", "Users", new { id = 0 }, null)</li>
                     </ul>
                 }
                 else
                 {
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink(@Locale.AllUsers, "Index", "Users")</li>
-                        <li>@Html.ActionLink(@Locale.Create_User, "Create", "Users")</li>
-                        <li>@Html.ActionLink("French", "SetLanguage", "Users", new { id = 1},null)</li>
+                        <li>@Html.ActionLink(@Locale.AddUser, "Create", "Users")</li>
+                        <li>@Html.ActionLink("French", "SetLanguage", "Users", new { id = 1 }, null)</li>
                     </ul>
                 }
             </div>
@@ -49,6 +51,10 @@
             @ViewBag.Error
         </label>
     }
+
+    @if (TempData.Keys.Contains("Message"))
+    {<h3 class="bg-success text-center" style="padding: 10px">@TempData["Message"]</h3>}
+
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -62,3 +68,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
