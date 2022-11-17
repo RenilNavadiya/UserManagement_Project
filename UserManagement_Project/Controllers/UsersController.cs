@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Web;
 using System.Web.Mvc;
+using System.Xml.Linq;
 using UMP_DataAccess;
 using UMP_DataObject;
 using UserManagement_Project.Mapper;
@@ -27,12 +28,13 @@ namespace UserManagement_Project.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            return View("Create");
+            return View();
         }
 
         [HttpPost]
         public ActionResult Insert(UserDTO userDTO)
         {
+
             try
             {
                 userEntity = UserMapper.EnitityMap(userDTO);
@@ -43,6 +45,7 @@ namespace UserManagement_Project.Controllers
                 throw new Exception(ex.Message);
             }
 
+            TempData["Message"] = "User with name: " + userDTO.FirstName + " has been Saved Successfully ";
             return RedirectToAction("Index");
         }
 
@@ -71,28 +74,27 @@ namespace UserManagement_Project.Controllers
                 throw new Exception(ex.Message);
             }
 
+            TempData["Message"] = "User with name: " + userDTO.FirstName + " has been edited Successfully ";
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
-        public ActionResult DeleteUser(Guid userId)
+        public JsonResult DeleteUser(Guid userId)
         {
             UserRepository userRepository = new UserRepository();
-            
+            string userName = "";
+
             try
             {
+                var users = userRepository.GetUsers();
+                userName = users.Where(x => x.UserId == userId).Select(x => x.FirstName).FirstOrDefault().ToString();
                 var result = userRepository.DeleteUser(userId);
-                               
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                ViewBag.Error = ex.Message;
             }
-            
-            return RedirectToAction("Index");
+            return Json($"User with name: {userName} has been successfully deleted!");
         }
-
-
 
         //GetAllUsers private method to use it in a various places
         private List<UserDTO> GetAllUsers(List<UserDTO> userDTOs)
