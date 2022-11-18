@@ -47,9 +47,12 @@ namespace UserManagement_Project.Models
         [Display(ResourceType = typeof(Resources.Locale), Name = "LastName")]
         public string LastName { get; set; }
 
+
+
         [Display(ResourceType = typeof(Resources.Locale), Name = "DateOfBirth")]
         [Required]
         [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime DateOfBirth { get; set; }
 
         

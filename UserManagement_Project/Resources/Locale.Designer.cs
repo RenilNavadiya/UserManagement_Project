@@ -142,6 +142,24 @@ namespace UserManagement_Project.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete Conformation!.
+        /// </summary>
+        public static string Delete_Conformation {
+            get {
+                return ResourceManager.GetString("Delete Conformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this User?.
+        /// </summary>
+        public static string DeleteMessage {
+            get {
+                return ResourceManager.GetString("DeleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Details.
         /// </summary>
         public static string Details {
@@ -264,6 +282,15 @@ namespace UserManagement_Project.Resources {
         public static string UpdateUser {
             get {
                 return ResourceManager.GetString("UpdateUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User has been successfully deleted.
+        /// </summary>
+        public static string User_has_been_successfully_deleted {
+            get {
+                return ResourceManager.GetString("User has been successfully deleted", resourceCulture);
             }
         }
         
