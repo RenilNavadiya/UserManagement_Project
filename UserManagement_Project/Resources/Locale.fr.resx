@@ -144,6 +144,12 @@
   <data name="Delete" xml:space="preserve">
     <value>Effacer</value>
   </data>
+  <data name="Delete Conformation" xml:space="preserve">
+    <value>Supprimer la conformation !</value>
+  </data>
+  <data name="DeleteMessage" xml:space="preserve">
+    <value>Voulez-vous vraiment supprimer cet utilisateur ?</value>
+  </data>
   <data name="Details" xml:space="preserve">
     <value>Détails</value>
   </data>
@@ -185,6 +191,9 @@
   </data>
   <data name="UpdateUser" xml:space="preserve">
     <value>Mettre à jour l'utilisateur</value>
+  </data>
+  <data name="User has been successfully deleted" xml:space="preserve">
+    <value>L'utilisateur a été supprimé avec succès</value>
   </data>
   <data name="User Management System" xml:space="preserve">
     <value>Système de gestion des utilisateurs</value>

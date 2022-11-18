@@ -9,6 +9,7 @@ using UMP_DataAccess;
 using UMP_DataObject;
 using UserManagement_Project.Mapper;
 using UserManagement_Project.Models;
+using UserManagement_Project.Resources;
 
 namespace UserManagement_Project.Controllers
 {
@@ -25,6 +26,7 @@ namespace UserManagement_Project.Controllers
             return View(userDTOs);
         }
 
+        // this action is created by Maitri
         [HttpGet]
         public ActionResult Create()
         {
@@ -39,13 +41,13 @@ namespace UserManagement_Project.Controllers
             {
                 userEntity = UserMapper.EnitityMap(userDTO);
                 userRepository.InsertNewUser(userEntity);
+                TempData["Message"] = "User with name: " + userDTO.FirstName + " has been Saved Successfully ";
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+               ViewBag.Error = ex.Message;
             }
 
-            TempData["Message"] = "User with name: " + userDTO.FirstName + " has been Saved Successfully ";
             return RedirectToAction("Index");
         }
 
@@ -62,38 +64,34 @@ namespace UserManagement_Project.Controllers
         [HttpPost]
         public ActionResult UpdateUser(UserDTO userDTO)
         {
-
-            UserRepository userRepository = new UserRepository();
             try
             {
                 userEntity = UserMapper.EnitityMap(userDTO);
                 userRepository.UpdateUser(userEntity);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-
-            TempData["Message"] = "User with name: " + userDTO.FirstName + " has been edited Successfully ";
-            return RedirectToAction("Index");
-        }
-
-        public JsonResult DeleteUser(Guid userId)
-        {
-            UserRepository userRepository = new UserRepository();
-            string userName = "";
-
-            try
-            {
-                var users = userRepository.GetUsers();
-                userName = users.Where(x => x.UserId == userId).Select(x => x.FirstName).FirstOrDefault().ToString();
-                var result = userRepository.DeleteUser(userId);
+                TempData["Message"] = "User with name: " + userDTO.FirstName + " has been edited Successfully ";
             }
             catch (Exception ex)
             {
                 ViewBag.Error = ex.Message;
             }
-            return Json($"User with name: {userName} has been successfully deleted!");
+
+            return RedirectToAction("Index");
+        }
+
+        public JsonResult DeleteUser(Guid userId)
+        {
+            string userName = "";
+            try
+            {
+                var users = userRepository.GetUsers();
+                userName = users.Where(x => x.UserId == userId).Select(x => x.FirstName).FirstOrDefault().ToString();
+                var result = userRepository.DeleteUser(userId);
+                return Json("User has been successfully deleted");
+            }
+            catch (Exception ex)
+            {
+                return Json(ex.Message);
+            }
         }
 
         //GetAllUsers private method to use it in a various places

@@ -11,7 +11,7 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>@Locale.UserEntity</h4>
         <hr />
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", id = "date" } })
                 @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -44,7 +44,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Gender, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Gender, new { htmlAttributes = new { @class = "form-control" } })
+                @Locale.Male @Html.RadioButtonFor(model => model.Gender, "Male", new { htmlAttributes = new { @class = "form-control" } })
+                @Locale.Female @Html.RadioButtonFor(model => model.Gender, "Female", new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Gender, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -103,4 +104,23 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    @* this script is for validatoin of not picking future date *@
+    <script defer>
+        $(function () {
+            var dtToday = new Date();
+
+            var month = dtToday.getMonth() + 1;
+            var day = dtToday.getDate();
+            var year = dtToday.getFullYear();
+
+            if (month < 10)
+                month = '0' + month.toString();
+            if (day < 10)
+                day = '0' + day.toString();
+
+            var maxDate = year + '-' + month + '-' + day;
+            $('#date').attr('max', maxDate);
+        });
+    </script>
 }
