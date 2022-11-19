@@ -118,7 +118,7 @@
             $(modal).find(".modal-title").text(title);
             $(modal).find(".modal-body").text(body);
             $(modal).find("#action span").text(actionname);
-            
+
             $(modal).show();
 
             $(modal).find("#close").click(function () {
@@ -138,10 +138,8 @@
                 data: { userId: id },
                 success: async function (data) {
                     $(modal).hide();
-                    if (data == "User has been successfully deleted") {
+                    if (data != "") {
                         await swal('Deleted', data, 'error');
-                    } else {
-                        await swal('Error', data, 'error');
                     }
                     location.reload();
                 }
