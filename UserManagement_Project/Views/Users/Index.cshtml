@@ -2,15 +2,13 @@
 @using UserManagement_Project.Resources
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Locale.Index</h2>
+<h2 class="lbl">@Locale.Index</h2>
 <br />
 
-<br />
-<table class="table">
+<table class="table table-responsive table-striped ">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.FirstName)
@@ -73,7 +71,7 @@
                 @Html.DisplayFor(modelItem => item.PostalCode)
             </td>
             <td>
-                @Html.ActionLink(@Locale.Edit, "UpdateUser", new { userId = item.UserId }, new { @class = "btn btn-success" }) |
+                @Html.ActionLink(@Locale.Edit, "UpdateUser", new { userId = item.UserId }, new { @class = "btn btn-info" }) |
                 <button id="delete" class="btn btn-danger pad" onclick="ModalAction('@Locale.Delete_Conformation',
         '@Locale.DeleteMessage', 'Delete', this, Delete)" data-id="@item.UserId">
                     Delete

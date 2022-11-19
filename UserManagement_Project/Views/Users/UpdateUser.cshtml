@@ -2,10 +2,10 @@
 @using UserManagement_Project.Resources
 
 @{
-    ViewBag.Title = "UpdateUser";
+    ViewBag.Title = "Update User";
 }
 
-<h2>@Locale.UpdateUser</h2>
+<h2 class="lbl">@Locale.UpdateUser</h2>
 
 
 @using (Html.BeginForm())
@@ -13,7 +13,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>@Locale.UserEntity</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
@@ -92,7 +91,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value=@Locale.Save class="btn btn-default" />
+                <input type="submit" value=@Locale.Save class="btn btn-success" />
             </div>
         </div>
     </div>

@@ -205,7 +205,16 @@ namespace UserManagement_Project.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Index.
+        ///   Looks up a localized string similar to User Management Systesm.
+        /// </summary>
+        public static string Header {
+            get {
+                return ResourceManager.GetString("Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Users.
         /// </summary>
         public static string Index {
             get {
@@ -277,7 +286,7 @@ namespace UserManagement_Project.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to UpdateUser.
+        ///   Looks up a localized string similar to  Update User.
         /// </summary>
         public static string UpdateUser {
             get {

@@ -121,7 +121,7 @@
     <value>Ajouter un utilisateur</value>
   </data>
   <data name="AllUsers" xml:space="preserve">
-    <value>Tous les utilisateurs</value>
+    <value>Tous utilisateurs</value>
   </data>
   <data name="Back to List" xml:space="preserve">
     <value>Retour à la liste</value>
@@ -165,8 +165,11 @@
   <data name="Gender" xml:space="preserve">
     <value>Le genre</value>
   </data>
+  <data name="Header" xml:space="preserve">
+    <value>Système de des utilisateurs</value>
+  </data>
   <data name="Index" xml:space="preserve">
-    <value>Indice</value>
+    <value>Tous les </value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Nom de famille</value>
@@ -190,7 +193,7 @@
     <value>Adresse</value>
   </data>
   <data name="UpdateUser" xml:space="preserve">
-    <value>Mettre à jour l'utilisateur</value>
+    <value>Mettre jour </value>
   </data>
   <data name="User has been edited Successfully" xml:space="preserve">
     <value>L'utilisateur a été modifié avec succès</value>
