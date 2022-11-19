@@ -41,11 +41,11 @@ namespace UserManagement_Project.Controllers
             {
                 userEntity = UserMapper.EnitityMap(userDTO);
                 userRepository.InsertNewUser(userEntity);
-                TempData["Message"] = "User with name: " + userDTO.FirstName + " has been Saved Successfully ";
+                TempData["Message"] = userDTO.FirstName.ToUpper() + ": " + Locale.User_has_been_Saved_Successfully;
             }
             catch (Exception ex)
             {
-               ViewBag.Error = ex.Message;
+                TempData["ErrorMessage"] = ex.Message;
             }
 
             return RedirectToAction("Index");
@@ -55,10 +55,18 @@ namespace UserManagement_Project.Controllers
         public ActionResult UpdateUser(Guid userId)
         {
             List<UserDTO> userDTOs = new List<UserDTO>();
-            GetAllUsers(userDTOs);
-            var user = userDTOs.FirstOrDefault(x => x.UserId == userId);
+            UserDTO userDTO = new UserDTO();
+            try
+            {
+                GetAllUsers(userDTOs);
+                userDTO = userDTOs.FirstOrDefault(x => x.UserId == userId);
+            }
+            catch (Exception ex)
+            {
+                TempData["ErrorMessage"] = ex.Message;
+            }
 
-            return View("UpdateUser", user);
+            return View("UpdateUser", userDTO);
         }
 
         [HttpPost]
@@ -68,11 +76,11 @@ namespace UserManagement_Project.Controllers
             {
                 userEntity = UserMapper.EnitityMap(userDTO);
                 userRepository.UpdateUser(userEntity);
-                TempData["Message"] = "User with name: " + userDTO.FirstName + " has been edited Successfully ";
+                TempData["Message"] = userDTO.FirstName + ": " + Locale.User_has_been_edited_Successfully;
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                TempData["ErrorMessage"] = ex.Message;
             }
 
             return RedirectToAction("Index");
@@ -86,11 +94,12 @@ namespace UserManagement_Project.Controllers
                 var users = userRepository.GetUsers();
                 userName = users.Where(x => x.UserId == userId).Select(x => x.FirstName).FirstOrDefault().ToString();
                 var result = userRepository.DeleteUser(userId);
-                return Json("User has been successfully deleted");
+                return Json(userName.ToUpper()+ ": " + Locale.User_has_been_successfully_deleted);
             }
             catch (Exception ex)
             {
-                return Json(ex.Message);
+                TempData["ErrorMessage"] = ex.Message;
+                return Json("");
             }
         }
 
@@ -107,7 +116,7 @@ namespace UserManagement_Project.Controllers
             }
             catch (Exception ex)
             {
-                ViewBag.Error = ex.Message;
+                TempData["ErrorMessage"] = ex.Message;
             }
             return userDTOs;
         }

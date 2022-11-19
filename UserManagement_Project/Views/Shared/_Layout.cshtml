@@ -45,14 +45,6 @@
             </div>
         </div>
     </div>
-    @if (@ViewBag.Error != null)
-    {
-        <label class="label-danger"
-               style="display: block; text-align: center; font-size: 1.5em;">
-            @ViewBag.Error
-        </label>
-    }
-
     <div class="container body-content">
         @RenderBody()
         <hr />
@@ -70,6 +62,19 @@
                     swal({
                     title:"Saved!",
                     text: "@TempData["Message"]",
+                    type: "error"
+                         });
+                });
+            });</text>
+     }
+     @if (TempData.Keys.Contains("ErrorMessage")){<text>
+            $(window).load(function()
+              {
+                $(document).ready(function()
+                {
+                    swal({
+                    title:"System Error",
+                    text: "@TempData["ErrorMessage"]",
                     type: "error"
                          });
                 });

@@ -192,6 +192,12 @@
   <data name="UpdateUser" xml:space="preserve">
     <value>Mettre à jour l'utilisateur</value>
   </data>
+  <data name="User has been edited Successfully" xml:space="preserve">
+    <value>L'utilisateur a été modifié avec succès</value>
+  </data>
+  <data name="User has been Saved Successfully" xml:space="preserve">
+    <value>L'utilisateur a été enregistré avec succès</value>
+  </data>
   <data name="User has been successfully deleted" xml:space="preserve">
     <value>L'utilisateur a été supprimé avec succès</value>
   </data>

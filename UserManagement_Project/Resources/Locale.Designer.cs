@@ -286,6 +286,24 @@ namespace UserManagement_Project.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User has been edited Successfully.
+        /// </summary>
+        public static string User_has_been_edited_Successfully {
+            get {
+                return ResourceManager.GetString("User has been edited Successfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User has been Saved Successfully.
+        /// </summary>
+        public static string User_has_been_Saved_Successfully {
+            get {
+                return ResourceManager.GetString("User has been Saved Successfully", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User has been successfully deleted.
         /// </summary>
         public static string User_has_been_successfully_deleted {
