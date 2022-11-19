@@ -165,8 +165,11 @@
   <data name="Gender" xml:space="preserve">
     <value>Gender</value>
   </data>
+  <data name="Header" xml:space="preserve">
+    <value>User Management Systesm</value>
+  </data>
   <data name="Index" xml:space="preserve">
-    <value>Index</value>
+    <value>All Users</value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Last Name</value>
@@ -190,7 +193,7 @@
     <value>Address</value>
   </data>
   <data name="UpdateUser" xml:space="preserve">
-    <value>UpdateUser</value>
+    <value> Update User</value>
   </data>
   <data name="User has been edited Successfully" xml:space="preserve">
     <value>User has been edited Successfully</value>
