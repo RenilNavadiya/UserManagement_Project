@@ -37,18 +37,26 @@ namespace UserManagement_Project.Controllers
         public ActionResult Insert(UserDTO userDTO)
         {
 
-            try
+            if (ModelState.IsValid)
             {
-                userEntity = UserMapper.EnitityMap(userDTO);
-                userRepository.InsertNewUser(userEntity);
-                TempData["Message"] = userDTO.FirstName.ToUpper() + ": " + Locale.User_has_been_Saved_Successfully;
+                try
+                {
+
+                        userEntity = UserMapper.EnitityMap(userDTO);
+                        userRepository.InsertNewUser(userEntity);
+                        TempData["Message"] = userDTO.FirstName.ToUpper() + ": " + Locale.User_has_been_Saved_Successfully;
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = ex.Message;
+                }
+                return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            else
             {
-                TempData["ErrorMessage"] = ex.Message;
+                return View("Create");
             }
 
-            return RedirectToAction("Index");
         }
 
         [HttpGet]
@@ -72,18 +80,25 @@ namespace UserManagement_Project.Controllers
         [HttpPost]
         public ActionResult UpdateUser(UserDTO userDTO)
         {
-            try
+            if (ModelState.IsValid)
             {
-                userEntity = UserMapper.EnitityMap(userDTO);
-                userRepository.UpdateUser(userEntity);
-                TempData["Message"] = userDTO.FirstName + ": " + Locale.User_has_been_edited_Successfully;
+                try
+                {
+                    userEntity = UserMapper.EnitityMap(userDTO);
+                    userRepository.UpdateUser(userEntity);
+                    TempData["Message"] = userDTO.FirstName + ": " + Locale.User_has_been_edited_Successfully;
+                }
+                catch (Exception ex)
+                {
+                    TempData["ErrorMessage"] = ex.Message;
+                }
+                return RedirectToAction("Index");
             }
-            catch (Exception ex)
+            else
             {
-                TempData["ErrorMessage"] = ex.Message;
+                return View("UpdateUser", userDTO);
             }
 
-            return RedirectToAction("Index");
         }
 
         public JsonResult DeleteUser(Guid userId)
